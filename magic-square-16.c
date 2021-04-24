@@ -1,16 +1,5 @@
 #include <stdio.h>
 
-/*
-int change(int *amnt, int deno)
-{
-	int bills;
-	
-	bills = *amnt / deno;
-	*amnt -= deno * bills;
-	return bills;
-}
-*/
-
 int main(){
 
 	int magic[16], i, sum, sumtoo;
