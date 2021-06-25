@@ -17,7 +17,7 @@ int main(){
 	}
 	scanf("%d -%d -%d", &pub, &item, &chck);
 	printf("Group identifier: %d\n", grpid);
-	printf("Publicsher code: %d\n", pub);
+	printf("Publisher code: %d\n", pub);
 	printf("Item number: %d\n", item);
 	printf("check digit: %d\n", chck);
 	return 0;
