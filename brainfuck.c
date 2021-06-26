@@ -3,6 +3,7 @@
 int brain(char mem[], char prg[])
 {
 	/*
+   -1		NOP		do nothing
 	0		HLT		end of input
 	1	>	DPF		Data Point  Forward
 	2	<	DPB		Data Point Backward
@@ -16,6 +17,7 @@ int brain(char mem[], char prg[])
 	*/
 	
 	enum instrct{HLT, DPF, DPB, INC, DCR, GIV, ACP, LOP, EXT};
+	NOP=-1;
 	int DP=0, PC=0, SP=0;
 	_Bool keep_going=1, save=0;
 	char val=0, stack[0x100];
@@ -24,6 +26,7 @@ int brain(char mem[], char prg[])
 	for (;keep_going;++PC)
 	{	val=mem[DP];
 		switch (prg[PC]) {
+			case NOP: 			   ;save=0;break;
 			case DPF: ++DP		   ;save=0;break;
 			case DPB: --DP		   ;save=0;break;
 			case INC: ++val		   ;save=1;break;
@@ -46,7 +49,7 @@ int brain(char mem[], char prg[])
 					PC=stack[SP];
 				else
 					--SP;
-			}
+			}; save=0;break;
 
 			default: keep_going=0;break; //intentional HLT has to be 0;
 		}
