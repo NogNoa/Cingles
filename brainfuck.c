@@ -20,7 +20,7 @@ int brain(char mem[], char prg[])
 	#define NOP -1
 	int DP=0, PC=0, SP=0;
 	_Bool keep_going=1, save=0;
-	char val=0, stack[0x100];
+	char val=0, stack[0x2000];
 
 
 	for (;keep_going;++PC)
@@ -53,10 +53,8 @@ int brain(char mem[], char prg[])
 
 			default: keep_going=0;break; //intentional HLT has to be 0;
 		}
-		
 		if(save)
-		{	mem[DP]=val;
-		}
+			mem[DP]=val;	
 	}
 	putchar('\n');
 	if (prg[PC])
@@ -70,6 +68,8 @@ int brain(char mem[], char prg[])
 int fucker(char* name,char prg[])
 {
 	//FILE[plaintext]-->prg[numbers]
+	char* instruct = "><+-.,[]";
+	//use strchr to get number from string index
 	return 0;
 }
 
