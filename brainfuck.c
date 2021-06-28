@@ -1,4 +1,6 @@
 #include <stdio.h>
+#define mem_size 0x8000
+#define stack_size 0x2000
 
 int brain(char mem[], char prg[])
 {
@@ -20,7 +22,7 @@ int brain(char mem[], char prg[])
 	#define NOP -1
 	int DP=0, PC=0, SP=0;
 	_Bool keep_going=1, save=0;
-	char val=0, stack[0x2000];
+	char val=0, stack[stack_size]
 
 
 	for (;keep_going;++PC)
@@ -75,9 +77,9 @@ int fucker(char* name,char prg[])
 
 int main(int argc, char* argv[])
 {	
-	char mem[0x8000]={0}; //2^15≈32,000
+	char mem[mem_size]={0}; //2^15≈32,000
 
-	char prg[0x8000]={1,6,1,1,2,2,-1,5,0};
+	char prg[mem_size]={1,6,1,1,2,2,-1,5,0};
 	
 	//fucker(filename,prg)
 
