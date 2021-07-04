@@ -74,7 +74,7 @@ int brain(char mem[], char prg[])
 	for (;keep_going;++PC)
 	{	val=mem[DP];
 		switch (prg[PC]) {
-			case NOP: 			   ;save=0;break;
+			case NOP: 			    save=0;break;
 			case DPF: ++DP		   ;save=0;break;
 			case DPB: --DP		   ;save=0;break;
 			case INC: ++val		   ;save=1;break;
@@ -90,14 +90,14 @@ int brain(char mem[], char prg[])
 				}
 				else
 					stack[SP++]=PC;
-			}; save=0;break;
+			} save=0;break;
 
 			case EXT:
 			{	if(val)
 					PC=stack[SP];
 				else
 					--SP;
-			}; save=0;break;
+			} save=0;break;
 
 			default: keep_going=0;break; //intentional HLT has to be 0;
 		}
