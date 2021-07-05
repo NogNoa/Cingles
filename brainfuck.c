@@ -13,9 +13,8 @@ int main(int argc, char* argv[])
 	
 	//fucker(filename,prg)
 
-	brain(mem,prg);
 	fucker(argv[1],prg);
-	//printf("%d",prg[2]);
+	brain(mem,prg);
 	return 0;
 
 }
@@ -31,13 +30,13 @@ int fucker(char* name,char prg[])
 	char c;
 	int PC=0;
 
-	if (strcmp(name,"stdin"))
+	if (!strcmp(name,"stdin"))
 		scroll = stdin;
 	else
 		scroll = fopen(name,"r");
 
 	while ((c=fgetc(scroll)) != EOF)
-	{	c = (char) (strchr(instruct,c) - instruct);
+	{	c = (char) (strchr(instruct,c) - instruct + 1);
 		prg[PC++]=c;
 	}
 	prg[PC]=0;
@@ -105,8 +104,8 @@ int brain(char mem[], char prg[])
 			mem[DP]=val;	
 	}
 	putchar('\n');
-	if (prg[PC])
-	{	printf("!Unlawful halt!\n");
+	if (prg[--PC])
+	{	printf("!Unlawful halt! %x\n",prg[PC]);
 		return 1;
 	}
 
