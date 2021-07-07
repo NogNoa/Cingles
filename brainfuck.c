@@ -11,9 +11,8 @@ int main(int argc, char* argv[])
 
 	char prg[mem_size]={1,6,1,1,2,2,-1,5,0};
 	
-	//fucker(filename,prg)
-
-	fucker(argv[1],prg);
+	if (argc>1)
+		fucker(argv[1],prg);
 	brain(mem,prg);
 	return 0;
 
@@ -26,7 +25,7 @@ int fucker(char* name,char prg[])
 	//use strchr to get number from string index
 	
 	FILE* scroll;
-	char* instruct = "><+-.,[]";
+	const char* instruct = "><+-.,[]";
 	char c;
 	int PC=0;
 
@@ -37,7 +36,8 @@ int fucker(char* name,char prg[])
 
 	while ((c=fgetc(scroll)) != EOF)
 	{	c = (char) (strchr(instruct,c) - instruct + 1);
-		prg[PC++]=c;
+		if (0<c && c<8)
+			prg[PC++]=c;
 	}
 	prg[PC]=0;
 	return 0;
