@@ -14,6 +14,8 @@ int main(int argc, char* argv[])
 	if (argc>1)
 		fucker(argv[1],prg);
 	brain(mem,prg);
+	if (!strcmp(argv[2],"db"))
+		printf("%s\n",mem);
 	return 0;
 
 }
@@ -36,7 +38,7 @@ int fucker(char* name,char prg[])
 
 	while ((c=fgetc(scroll)) != EOF)
 	{	c = (char) (strchr(instruct,c) - instruct + 1);
-		if (0<c && c<8)
+		if (0<c && c<9)
 			prg[PC++]=c;
 	}
 	prg[PC]=0;
@@ -83,17 +85,15 @@ int brain(char mem[], char prg[])
 			
 			case LOP:
 			{ 	if(!val)
-				{	for (;prg[PC] != EXT;++PC)
+					for (;prg[PC] != EXT;++PC)
 						;
-				++PC;
-				}
 				else
 					stack[SP++]=PC;
 			} save=0;break;
 
 			case EXT:
 			{	if(val)
-					PC=stack[SP];
+					PC=stack[SP-1];
 				else
 					--SP;
 			} save=0;break;
