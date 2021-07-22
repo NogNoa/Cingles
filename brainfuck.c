@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 	if (argc>1)
 		fucker(argv[1],prg);
 	brain(mem,prg);
-	if (!strcmp(argv[2],"db"))
+	if (argc>2 && !strcmp(argv[2],"db"))
 		printf("%s\n",mem);
 	return 0;
 
