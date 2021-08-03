@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#define mem_size 0x8000
+#define mem_size 0x8000 //0d32,768
 
 int brain(char mem[], char prg[]);
 int fucker(char* name,char prg[]);
