@@ -24,11 +24,6 @@ int binarise(bcd call[], int len)
 	return binarise_wraped(call, len, 0);
 }
 
-void reveal(bcd call[], int len)
-{
-	printf("%d\n",binarise(call, len));
-}
-
 bcd decimise_single(int call)
 {
 	return (bcd) {.eight = (call > 7), .rest = call % 8};
