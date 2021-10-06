@@ -47,14 +47,15 @@ bcd* add(bcd adder, bcd addand, bcd back[2])
 	back[1]= (bcd) {0,0};
 	esum =adder.eight + addand.eight;
 	rsum = adder.rest + addand.rest;
-	while (esum > 1 || rsum > 7 || (esum > 0 && rsum > 1))
-	{	if (esum > 0 && rsum > 1)
-			back[1].rest++, esum--, (rsum-=2); 
-		else if (esum > 1)
+	while (esum > 1 || rsum > 7)
+	{	if (esum > 1)
 			back[1].rest++, (esum-=2),(rsum+=6);
 		else //if (rsum > 7)
 			esum++,rsum -= 8;
 	}
+	while (esum > 0 && rsum > 1)
+		back[1].rest++, esum--, (rsum-=2); 
+
 	back[0] = (bcd) {esum, rsum};
 	return back;
 }
