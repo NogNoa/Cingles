@@ -11,4 +11,6 @@ bcd decimise_single(int call);
 
 bcd* decimise(int call, bcd back[]);
 
-bcd* add(bcd adder, bcd addand, bcd back[2]);
+bcd* normalise(bcd call, bcd back[2]);
+
+bcd* add_single(bcd adder, bcd addand, bcd back[2]);
