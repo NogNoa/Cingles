@@ -31,12 +31,22 @@ bcd decimise_single(int call)
 
 bcd* decimise(int call, bcd back[])
 {
-	if (!call)
+	if (!call) //call == NULL
 		*back = (bcd) {0,0};
 	else
 	{	*back = decimise_single(call % 10); 
 		decimise(call / 10, back+1);
 	}	
 
+	return back;
+}
+
+bcd* add(bcd adder, bcd addand, bcd back[2])
+{
+	int rsum, esum;
+	back[1].eight = 0;
+	back[1].rest = (( esum =adder.eight + addand.eight + ((rsum = adder.rest + addand.rest) / 7) ) / 2);
+	back[1].eight = esum % 2;
+	back[0].rest= rsum % 7;
 	return back;
 }
