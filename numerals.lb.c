@@ -45,8 +45,10 @@ bcd* add(bcd adder, bcd addand, bcd back[2])
 {
 	int rsum, esum;
 	back[1].eight = 0;
-	back[1].rest = (( esum =adder.eight + addand.eight + ((rsum = adder.rest + addand.rest) / 7) ) / 2);
-	back[1].eight = esum % 2;
-	back[0].rest= rsum % 7;
+	back[1].rest = (( esum =adder.eight + addand.eight + ((rsum = adder.rest + addand.rest) / 8) ) / 2);
+	back[0].eight = esum % 2;
+	back[0].rest= rsum % 8;
+	if (back[0].eight && back[0].rest > 1)
+		back[0].eight--, (back[0].rest-=2), back[1].rest++;
 	return back;
 }
