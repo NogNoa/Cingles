@@ -1,7 +1,12 @@
 typedef struct {
-	unsigned int eight : 1;
 	unsigned int rest : 3;
+	unsigned int eight : 1;
 } bcd;
+
+typedef struct {
+	int sign :1;
+	bcd val[];
+} bcd_int;
 
 int binarise_single(bcd call)
 {
@@ -36,7 +41,7 @@ bcd* decimise(int call, bcd back[])
 	return back;
 }
 
-bcd* normalise(bcd call, bcd back[2])
+bcd* normalise(bcd call, bcd back[])
 {
 	while (call.eight > 0 && call.rest > 1)
 		back[1].rest++, call.eight--, (call.rest-=2); 
@@ -45,7 +50,7 @@ bcd* normalise(bcd call, bcd back[2])
 	return (bcd []) { call, back[1]};
 }
 
-bcd* add_single(bcd adder, bcd addand, bcd back[2])
+bcd* add_single(bcd adder, bcd addand, bcd back[])
 {
 	int rsum, esum;
 	esum =adder.eight + addand.eight;
@@ -56,5 +61,5 @@ bcd* add_single(bcd adder, bcd addand, bcd back[2])
 		else //if (rsum > 7)
 			esum++,rsum -= 8;
 	}
-	return (normalise((bcd) {esum, rsum},back));
+	return (normalise((bcd) {rsum, esum},back));
 }

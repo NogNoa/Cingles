@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    bcd a[]={{1,7},{0,6}}, b[]={{0,3},{0,5}};
+    bcd a[]={{7,1},{6,0}}, b[]={{3,0},{5,0}};
     bcd c[3];
     time_t t0=time(NULL);
     for (int i=0;i<999999999;i++)
