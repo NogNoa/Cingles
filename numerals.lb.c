@@ -10,18 +10,13 @@ int binarise_single(bcd call)
 
 //bcd arrays are little endian, as all things should be.
 
-int binarise_wraped(bcd call[], int len, int iter)
-{
-	if (iter>=len)
-		return 0;
-	else
-	{	return 10*binarise_wraped(call+1,len,iter+1) + binarise_single(*call);
-	}
-}
-
 int binarise(bcd call[], int len)
 {
-	return binarise_wraped(call, len, 0);
+	if (len<=0)
+		return 0;
+	else
+	{	return 10*binarise(call+1,len-1) + binarise_single(*call);
+	}
 }
 
 bcd decimise_single(int call)
@@ -46,7 +41,8 @@ bcd* normalise(bcd call, bcd back[2])
 	while (call.eight > 0 && call.rest > 1)
 		back[1].rest++, call.eight--, (call.rest-=2); 
 
-	return (back = (bcd []) { {call.eight, call.rest}, back[1]});
+	*back=call;
+	return (bcd []) { call, back[1]};
 }
 
 bcd* add_single(bcd adder, bcd addand, bcd back[2])
@@ -60,5 +56,5 @@ bcd* add_single(bcd adder, bcd addand, bcd back[2])
 		else //if (rsum > 7)
 			esum++,rsum -= 8;
 	}
-	return (back = normalise((bcd) {esum, rsum},back));
+	return (normalise((bcd) {esum, rsum},back));
 }
