@@ -47,7 +47,7 @@ bcd* normalise(bcd call, bcd back[])
 		back[1].rest++, call.eight--, (call.rest-=2); 
 
 	*back=call;
-	return (bcd []) { call, back[1]};
+	return back;
 }
 
 bcd* add_single(bcd adder, bcd addand, bcd back[])
