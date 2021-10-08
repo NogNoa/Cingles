@@ -44,7 +44,7 @@ bcd* decimise(int call, bcd back[])
 bcd* normalise(bcd call, bcd back[])
 {
 	while (call.eight > 0 && call.rest > 1)
-		back[1].rest++, call.eight--, (call.rest-=2); 
+		(call.rest-=2), call.eight--, back[1].rest++;  
 
 	*back=call;
 	return back;
@@ -57,9 +57,22 @@ bcd* add_single(bcd adder, bcd addand, bcd back[])
 	rsum = adder.rest + addand.rest;
 	while (esum > 1 || rsum > 7)
 	{	if (esum > 1)
-			back[1].rest++, (esum-=2),(rsum+=6);
+			back[1].rest++, (esum-=2), (rsum+=6);
 		else //if (rsum > 7)
-			esum++,rsum -= 8;
+			rsum-=8, esum++;
 	}
 	return (normalise((bcd) {rsum, esum},back));
+}
+
+bcd* sub_single(bcd minuend, bcd subtrahend)
+{	int rdif, edid;
+	rdif = minuend.rest - subtrahend.rest;
+	if ((edif = minuend.eight - subtrahend.eight) <= 0)
+	{	if (rdif < 0 || edif < 0)
+			return sub_single(subtrahend, minuend);
+	}
+	else if (rdif<0) //don't need while since could only be 0 or 1 iterations
+		rdif+=8, edif--;
+	return (bcd) {rdif, edif}
+
 }
