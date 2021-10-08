@@ -64,8 +64,8 @@ bcd* add_single(bcd adder, bcd addand, bcd back[])
 	return (normalise((bcd) {rsum, esum},back));
 }
 
-bcd* sub_single(bcd minuend, bcd subtrahend)
-{	int rdif, edid;
+bcd sub_single(bcd minuend, bcd subtrahend)
+{	int rdif, edif;
 	rdif = minuend.rest - subtrahend.rest;
 	if ((edif = minuend.eight - subtrahend.eight) <= 0)
 	{	if (rdif < 0 || edif < 0)
@@ -73,6 +73,5 @@ bcd* sub_single(bcd minuend, bcd subtrahend)
 	}
 	else if (rdif<0) //don't need while since could only be 0 or 1 iterations
 		rdif+=8, edif--;
-	return (bcd) {rdif, edif}
-
+	return (bcd) {rdif, edif};
 }
