@@ -7,11 +7,11 @@ OBJ = $(patsubst %, $(ODIR)/%, $(_OBJ))
 OBJPILE = $(CC) $(CFLAGS) -c -o $@     $<
 COMPILE = $(CC) $(CFLAGS)    -o $@.elf $^
 
-try: $(ODIR)/try.o $(ODIR)/stdio.lb.o 
+try: $(ODIR)/try.o $(ODIR)/numerals.lb.o
 	$(COMPILE) 
-$(ODIR)/try.o: stdio.lb.h
+$(ODIR)/try.o: try.c
 	$(OBJPILE)
-$(ODIR)/stdio.lb.o:
+$(ODIR)/numerals.lb.o: numerals.lb.c
 	$(OBJPILE)
 
 transpose: $(ODIR)/transpose.o $(ODIR)/KnR_getline.lb.o
