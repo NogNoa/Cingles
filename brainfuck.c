@@ -67,9 +67,9 @@ int brain(char mem[], char prg[])
 	
 	enum instrct{HLT, DPF, DPB, INC, DCR, GIV, ACP, LOP, EXT};
 	
-	int DP=0, PC=0, SP=0;
-	_Bool keep_going=1, save=0;
-	char val=0, stack[stack_size];
+	  int  DP=0,  PC=0,       SP=0;
+	_Bool keep_going=1,     save=0;
+	 char val=0, stack[stack_size];
 
 
 	for (;keep_going;++PC)

@@ -53,6 +53,7 @@ bcd* normalise(bcd call, bcd back[])
 bcd* add_single(bcd adder, bcd addand, bcd back[])
 {
 	int rsum, esum;
+	
 	esum =adder.eight + addand.eight;
 	rsum = adder.rest + addand.rest;
 	while (esum > 1 || rsum > 7)
@@ -66,6 +67,7 @@ bcd* add_single(bcd adder, bcd addand, bcd back[])
 
 bcd sub_single(bcd minuend, bcd subtrahend)
 {	int rdif, edif;
+	
 	rdif = minuend.rest - subtrahend.rest;
 	if ((edif = minuend.eight - subtrahend.eight) <= 0)
 	{	if (rdif < 0 || edif < 0)

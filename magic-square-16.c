@@ -2,7 +2,8 @@
 
 int main(){
 
-	int magic[16], i, sum, sumtoo;
+	int i, sum, sumtoo;
+	int magic[16];
 	
 	
 	printf("Enter the numbers from 1 to 16 in any order: ");
