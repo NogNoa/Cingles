@@ -8,14 +8,14 @@ typedef struct {
 	bcd val[];
 } bcd_int;
 
-int binarise_single(bcd call)
+int binarise_single(const bcd call)
 {
 	return (signed) (call.eight) ? (call.rest ? 9 : 8) : call.rest;
 }
 
 //bcd arrays are little endian, as all things should be.
 
-int binarise(bcd call[], int len)
+int binarise(const bcd call[],const int len)
 {
 	if (len<=0)
 		return 0;
@@ -24,12 +24,12 @@ int binarise(bcd call[], int len)
 	}
 }
 
-bcd decimise_single(int call)
+bcd decimise_single(const int call)
 {
 	return (bcd) {.eight = (call > 7), .rest = call % 8};
 }
 
-bcd* decimise(int call, bcd back[])
+bcd* decimise(const int call, bcd back[])
 {
 	if (!call) //call == NULL
 		*back = (bcd) {0,0};
@@ -41,7 +41,7 @@ bcd* decimise(int call, bcd back[])
 	return back;
 }
 
-bcd* normalise(bcd call, bcd back[])
+static bcd* normalise(bcd call, bcd back[])
 {
 	while (call.eight > 0 && call.rest > 1)
 		(call.rest-=2), call.eight--, back[1].rest++;  
@@ -50,7 +50,7 @@ bcd* normalise(bcd call, bcd back[])
 	return back;
 }
 
-bcd* add_single(bcd adder, bcd addand, bcd back[])
+bcd* add_single(const bcd adder, const bcd addand, bcd back[])
 {
 	int rsum, esum;
 	
@@ -65,7 +65,7 @@ bcd* add_single(bcd adder, bcd addand, bcd back[])
 	return (normalise((bcd) {rsum, esum},back));
 }
 
-bcd sub_single(bcd minuend, bcd subtrahend)
+bcd sub_single(const bcd minuend, const bcd subtrahend)
 {	int rdif, edif;
 	
 	rdif = minuend.rest - subtrahend.rest;
