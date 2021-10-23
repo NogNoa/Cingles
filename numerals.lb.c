@@ -8,7 +8,7 @@ typedef struct {
 	bcd val[];
 } bcd_int;
 
-int binarise_single(const bcd call)
+static int binarise_single(const bcd call)
 {
 	return (signed) (call.eight) ? (call.rest ? 9 : 8) : call.rest;
 }
@@ -24,7 +24,7 @@ int binarise(const bcd call[],const int len)
 	}
 }
 
-bcd decimise_single(const int call)
+static bcd decimise_single(const int call)
 {
 	return (bcd) {.eight = (call > 7), .rest = call % 8};
 }
