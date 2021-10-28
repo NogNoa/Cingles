@@ -14,13 +14,6 @@ $(ODIR)/try.o: try.c
 $(ODIR)/numerals.lb.o: numerals.lb.c
 	$(OBJPILE)
 
-transpose: $(ODIR)/transpose.o $(ODIR)/KnR_getline.lb.o
-	$(COMPILE)
-$(ODIR)/transpose.o : ../KnR_getline.h
-	$(OBJPILE)
-$(ODIR)/KnR_getline.lb.o : ../KnR_getline.lb.c ../KnR_getline.h
-	$(OBJPILE)
-
 .PHONY: check
 .PHONY: check++
 
