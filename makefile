@@ -7,46 +7,12 @@ OBJ = $(patsubst %, $(ODIR)/%, $(_OBJ))
 OBJPILE = $(CC) $(CFLAGS) -c -o $@     $<
 COMPILE = $(CC) $(CFLAGS)    -o $@.elf $^
 
-try: $(ODIR)/try.o $(ODIR)/malloc.o
+try: $(ODIR)/try.o $(ODIR)/numerals.lb.o
 	$(COMPILE) 
-$(ODIR)/try.o:
-
-detab: $(ODIR)/entab.o $(ODIR)/tabbin.lb.o
-	$(COMPILE)
-
-entab: $(ODIR)/entab.o $(ODIR)/tabbin.lb.o
-	$(COMPILE)
-
-dcl: $(ODIR)/declaration_parser.o $(ODIR)/molon.lb.o
-	$(COMPILE)
-$(ODIR)/declaration_parser.o: dcl.h
-
-undcl:  $(ODIR)/undcl.o $(ODIR)/molon.lb.o
-	$(COMPILE)
-$(ODIR)/undcl.o: dcl.h
-
-defproc:  $(ODIR)/define_processor.o $(ODIR)/molon.lb.o $(ODIR)/add_remove-string.lb.o $(ODIR)/table_lookup.lb.o
-	$(COMPILE)
-
-find: $(ODIR)/find.o $(ODIR)/file_ops.lb.o
-	$(COMPILE)
-
-file_print: $(ODIR)/file_print.o $(ODIR)/file_ops.lb.o
-	$(COMPILE)
-
-cat: $(ODIR)/cat.o $(ODIR)/unix.lb.o
-	$(COMPILE)
-$(ODIR)/cat.o: unix.lb.h
-
-transpose: $(ODIR)/transpose.o $(ODIR)/KnR_getline.lb.o
-	$(COMPILE)
-$(ODIR)/transpose.o : transpose.c KnR_getline.h
+$(ODIR)/try.o: try.c
 	$(OBJPILE)
-$(ODIR)/KnR_getline.lb.o : KnR_getline.lb.c KnR_getline.h
+$(ODIR)/numerals.lb.o: numerals.lb.c
 	$(OBJPILE)
-
-$(ODIR)/%.o: %.c
-	 $(OBJPILE)
 
 .PHONY: check
 .PHONY: check++

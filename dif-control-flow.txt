@@ -1,2 +1,0 @@
-\n}t}t}ts[j++] = c;break;[j++] = t[i];break;
-\n}t}t\ts[j++] = c;'\\';s[j++] = t[i];
