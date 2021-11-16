@@ -1,0 +1,17 @@
+[abc].out
+*.elf
+*.exe
+*.o
+*.i64
+[abc].txt
+*.alg
+.idea/
+.vscode/
+*.pdb
+*.ilk
+*.obj
+*.csv
+build/
+CMakeLists.txt
+.codelite/
+tags
