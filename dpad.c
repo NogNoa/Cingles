@@ -33,3 +33,25 @@ dirmask dir_decode(angle ang)
 	back.down  = !(ang.val & 04) &&      (ang.val);
 	return back;
 }
+
+#include <stdio.h>
+#include <string.h>
+
+void test(void)
+{
+	for (int i=0;i<8;i++)
+	{	dirmask dir = dir_decode((angle){i});
+		char right  = (dir.right) ? 'R' : ' ';
+		char left   = (dir.left)  ? 'L' : ' ';
+		char down   = (dir.down)  ? 'D' : ' ';
+		char up     = (dir.up)    ? 'U' : ' ';
+		printf("%c%c%c%c\n",up,down,left,right);
+	}
+}
+
+int main(int argc, char** argv)
+{
+	if (argc > 1 && !strcmp(argv[1],"test"))
+		test();
+	return 0;
+}
