@@ -27,9 +27,9 @@ typedef struct {
 dirmask dir_decode(angle ang)
 {
 	dirmask back;
-	back.right = ((ang.val & 06) == 0) || (ang.val == 07);
-	back.left  = (02 < ang.val) 	   || (ang.val <  06);
-	back.up    = (ang.val & 04)        && (ang.val != 04);
-	back.down  = (ang.val)       && ((ang.val & 04) == 0);
+	back.right = !(ang.val & 06) ||      !~ang.val;
+	back.left  =  (ang.val & 04)  ^ (ang.val & 02);
+	back.up    =  (ang.val & 04) && (ang.val & 03);
+	back.down  = !(ang.val & 04) &&      (ang.val);
 	return back;
 }
