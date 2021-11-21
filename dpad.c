@@ -28,7 +28,7 @@ dirmask dir_decode(angle ang)
 {
 	dirmask back;
 	back.right = ! (ang.val & 06)     ||       !~ang.val;
-	back.left  = ((ang.val & 06) == 04) || (ang.val == 03);
+	back.left  = !((ang.val & 06)^04) || !(ang.val ^ 03);
 	back.down  = ! (ang.val & 04)     &&         ang.val;
 	back.up    =   (ang.val & 04)     &&  (ang.val & 03);
 	return back;
