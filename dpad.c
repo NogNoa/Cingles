@@ -27,10 +27,10 @@ typedef struct {
 dirmask dir_decode(angle ang)
 {
 	dirmask back;
-	back.right = !(ang.val & 06) ||      !~ang.val;
-	back.left  =  (_Bool)(ang.val & 04)  ^ (_Bool)(ang.val & 02);
-	back.up    =  (ang.val & 04) && (ang.val & 03);
-	back.down  = !(ang.val & 04) &&      (ang.val);
+	back.right = !(ang.val & 06) ||       !~ang.val;
+	back.left  =  (02 < ang.val) || (ang.val <  06);
+	back.up    =  (ang.val & 04) &&  (ang.val & 03);
+	back.down  = !(ang.val & 04) &&       (ang.val);
 	return back;
 }
 
