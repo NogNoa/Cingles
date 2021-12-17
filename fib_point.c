@@ -1,6 +1,7 @@
 //c using pointers
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int fib(int av)
 {	
@@ -15,6 +16,12 @@ int fib(int av)
 
 int main(int argc, char** argv)
 {
+	int* call=malloc(sizeof (int));
+	int* back=malloc(sizeof (int));
 	if (argc>1)
-		fib(atoi(argv[1]));
+		*call=atoi(argv[1]);
+	else
+		*call=0;
+	*back = fib(*call);
+	printf("%d\n",*back);
 }
