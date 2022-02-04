@@ -4,6 +4,6 @@ typedef struct rope{
     char* str;
 } rope;
 
-rope rope_get(char*);
-rope rope_extend(char*);
-rope rope_put(char*);
+rope rope_get(const char*);
+rope rope_extend(rope);
+rope rope_put(rope);

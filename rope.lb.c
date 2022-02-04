@@ -13,7 +13,7 @@ rope rope_get(const char* scroll)
     last->str = malloc(last_len);
     strncpy(last->str, scroll+(full_cells * 0x100), last_len);
     rope* nxt=last;
-    for (int cell=full_cells-1; cell>=0; cell--)
+    for (int cell=full_cells-1; cell>0; cell--)
     {   rope* curr =malloc(sizeof(rope));
         *curr = (rope) {0xFF, nxt, NULL};
         curr->str = malloc(0xFF);
