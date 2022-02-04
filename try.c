@@ -3,6 +3,6 @@
 
 int main(int argc, char *argv[])
 {
-    rope a = {5,0,"hello"};
+    rope a = rope_get("hello");
     puts(a.str);
 }
