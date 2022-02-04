@@ -3,15 +3,16 @@ CFLAGS = -Wall -g
 DEPS = tabbin.h
 ODIR = obj
 _OBJ = 
+TRYLIB = rope
 OBJ = $(patsubst %, $(ODIR)/%, $(_OBJ))
 OBJPILE = $(CC) $(CFLAGS) -c -o $@     $<
 COMPILE = $(CC) $(CFLAGS)    -o $@.elf $^
 
-try: $(ODIR)/try.o $(ODIR)/numerals.lb.o
+try: $(ODIR)/try.o $(ODIR)/$(TRYLIB).lb.o
 	$(COMPILE) 
 $(ODIR)/try.o: try.c
 	$(OBJPILE)
-$(ODIR)/numerals.lb.o: numerals.lb.c
+$(ODIR)/$(TRYLIB).lb.o: $(TRYLIB).lb.c
 	$(OBJPILE)
 
 .PHONY: check
