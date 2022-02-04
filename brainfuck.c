@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #define mem_size 0x8000 //0d32,768
 
-int brain(char mem[], char prg[]);
-int fucker(char* name,char prg[]);
+int brain(char mem[], const char prg[]);
+int fucker(const char* name,char prg[]);
 
 int main(int argc, char* argv[])
 {	
-	char mem[mem_size]={0}; //2^15≈32,000
+	char mem[mem_size]={0};
 
 	char prg[mem_size]={1,6,1,1,2,2,-1,5,0};
 	
@@ -22,7 +23,7 @@ int main(int argc, char* argv[])
 
 #define stack_size 0x2000
 
-int fucker(char* name,char prg[])
+int fucker(const char* name,char prg[])
 {	//FILE[plaintext]-->prg[numbers]
 	//use strchr to get number from string index
 	
@@ -49,7 +50,7 @@ int fucker(char* name,char prg[])
 
 #define NOP -1
 
-int brain(char mem[], char prg[])
+int brain(char mem[], const char prg[])
 {
 	/*
    -1		NOP		do nothing
@@ -67,9 +68,9 @@ int brain(char mem[], char prg[])
 	
 	enum instrct{HLT, DPF, DPB, INC, DCR, GIV, ACP, LOP, EXT};
 	
-	  int  DP=0,  PC=0,       SP=0;
-	_Bool keep_going=1,     save=0;
-	 char val=0, stack[stack_size];
+	int  DP=0,  PC=0,           SP=0;
+	bool keep_going=true, save=false;
+	char val=0,    stack[stack_size];
 
 
 	for (;keep_going;++PC)
