@@ -1,16 +1,19 @@
 typedef struct {
-	unsigned int rest : 3;
+	unsigned int one : 1;
+	unsigned int middle : 2;
 	unsigned int eight : 1;
 } bcd;
+
+//using only one bit for 8 and 9
 
 typedef struct {
 	int sign :1;
 	bcd val[];
 } bcd_int;
 
-static int binarise_single(const bcd call)
+static unsigned int binarise_single(const bcd call)
 {
-	return (signed) (call.eight) ? (call.rest ? 9 : 8) : call.rest;
+	return call.one + (call.eight) ? (call.eight << 3) : (call.middle << 1);
 }
 
 //bcd arrays are little endian, as all things should be.
@@ -20,12 +23,15 @@ int binarise(const bcd call[],const int len)
 	if (len<=0)
 		{return 0;}
 	else
-		{return 10*binarise(call+1,len-1) + binarise_single(*call);}
+		{return 10*binarise(call+1,len-1) + (signed) binarise_single(*call);}
 }
 
 static bcd decimise_single(const int call)
-{
-	return (bcd) {.eight = (call > 7), .rest = call % 8};
+{	
+	if (call >7)
+		return (bcd) {.eight = 1, .one = call % 8};
+	else
+		return (bcd) {.middle = call / 2, .one = call % 2};
 }
 
 bcd* decimise(const int call, bcd back[])
@@ -41,9 +47,14 @@ bcd* decimise(const int call, bcd back[])
 
 static bcd* normalise(bcd call, bcd back[])
 {
-	while (call.eight > 0 && call.rest > 1)
-		{(call.rest-=2), call.eight--, back[1].rest++;}  
-	*back=call;
+	if (call.middle && call.eight)
+		{call.middle--, call.eight--;
+		 if (back[1].one)
+		 	{back[1].one--, back[1].middle++;}
+		 else
+		 	{back[1].one++;} 
+		}
+	back[0]=call;
 	return back;
 }
 
