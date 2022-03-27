@@ -51,7 +51,7 @@ static bcd inc_single(bcd call)
 	if (call.eight)
 		{rest = &call.eight;}
 	else
-		{rest = &call.middle}
+		{rest = &call.middle;}
 	*rest += call.one;
 	call.one = !call.one;  //^= 1 is actually faster
 	// {back[1].one = 0, back[1].middle++;} if (back[1].one) else {back[1].one = 1;} 
@@ -61,7 +61,7 @@ static bcd inc_single(bcd call)
 static bcd* inc(bcd back[], int len)
 {
 	back[0]=inc_single(back[0]);
-	if (not back[0] && len > 1)
+	if (back[0] == (bcd) {} && len > 1)
 		{inc(back+1, len-1);}
 	return back;
 }
@@ -75,6 +75,8 @@ static bcd* normalise(bcd call, bcd back[])
 	back[0]=call;
 	return back;
 }
+
+/*
 
 bcd* add_single(const bcd adder, const bcd addand, bcd back[])
 {
@@ -104,3 +106,4 @@ bcd sub_single(const bcd minuend, const bcd subtrahend)
 		{rdif+=8, edif--;}
 	return (bcd) {rdif, edif};
 }
+*/
