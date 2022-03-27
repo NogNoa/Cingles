@@ -47,10 +47,23 @@ bcd* decimise(const int call, bcd back[])
 
 static bcd inc_single(bcd call)
 {
-	call.middle += call.one;
+	unsigned int *rest;
+	if (call.eight)
+		{rest = &call.eight;}
+	else
+		{rest = &call.middle}
+	*rest += call.one;
 	call.one = !call.one;  //^= 1 is actually faster
 	// {back[1].one = 0, back[1].middle++;} if (back[1].one) else {back[1].one = 1;} 
 	return call;
+}
+
+static bcd* inc(bcd back[], int len)
+{
+	back[0]=inc_single(back[0]);
+	if (not back[0] && len > 1)
+		{inc(back+1, len-1);}
+	return back;
 }
 
 static bcd* normalise(bcd call, bcd back[])
