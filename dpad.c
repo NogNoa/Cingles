@@ -14,7 +14,7 @@
 */
 
 typedef struct {
-	unsigned int val :3;
+	unsigned char val :3;
 } angle;
 
 typedef struct {
@@ -37,7 +37,7 @@ dirmask dir_decode(angle ang)
 #include <stdio.h>
 #include <string.h>
 
-void test(int i)
+void test(unsigned char i)
 {	dirmask dir = dir_decode((angle){i});
 	char right  = (dir.right) ? 'R' : ' ';
 	char left   = (dir.left)  ? 'L' : ' ';
@@ -49,7 +49,7 @@ void test(int i)
 int main(int argc, char** argv)
 {
 	if (argc > 1 && !strcmp(argv[1],"test"))
-	{	for (int i=0;i<8;i++)
+	{	for (unsigned char i=0;i<8;i++)
 		{	test(i);	}
 	}
 	return 0;
