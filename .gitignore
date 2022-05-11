@@ -3,6 +3,7 @@
 *.exe
 *.o
 *.i64
+*.gch
 [abc].txt
 *.alg
 .idea/
@@ -11,6 +12,7 @@
 *.ilk
 *.obj
 *.csv
+*.bak
 build/
 CMakeLists.txt
 .codelite/

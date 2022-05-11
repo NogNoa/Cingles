@@ -10,6 +10,6 @@ int main(int argc, char const *argv[])
 	_Bool * pl = &l[0];
 
 	for(int i=-8;i<8;++i)
-		printf("%d\n",pl+i);
+		printf("%d\n",*(pl+i));
 	return 0;
 }

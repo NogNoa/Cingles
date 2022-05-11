@@ -69,7 +69,7 @@ static bcd* normalise(bcd call, bcd back[], int len)
 {
 	if (call.middle && call.eight)
 	{	call.middle--, call.eight--;
-		back[1]=inc(back+1, len-1);
+		back[1]=*inc(back+1, len-1);
 	}
 	back[0]=call;
 	return back;
